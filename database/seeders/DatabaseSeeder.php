@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
     {
         User::factory()->create([
             'personal_number'   =>  '61625',
-            'title'             =>  null,
+            'title'             =>  'Guru.',
             'last_name'         =>  'Klika',
             'first_name'        =>  'Miroslav',
             'email'             =>  'klika@khn.cz',

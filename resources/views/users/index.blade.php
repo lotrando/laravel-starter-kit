@@ -18,25 +18,29 @@
               <thead>
                 <tr>
                   <th scope="col">{{ __('#') }}</th>
-                  <th scope="col">@sortablelink('personal_number', __('Personal Number'))</th>
-                  <th scope="col">@sortablelink('title', __('Title'))</th>
-                  <th scope="col">@sortablelink('last_name', __('Last Name'))</th>
-                  <th scope="col">@sortablelink('first_name', __('First Name'))</th>
+                  <th scope="col">@sortablelink('personal_number', __('Personal Number'), ['filter' => 'active, visible'], ['class' => 'text-decoration-none text-uppercase text-muted'])</th>
+                  <th scope="col">@sortablelink('title', __('Title'), ['filter' => 'active, visible'], ['class' => 'text-decoration-none text-uppercase text-muted'])</th>
+                  <th scope="col">@sortablelink('last_name', __('Last Name'), ['filter' => 'active, visible'], ['class' => 'text-decoration-none text-uppercase text-muted'])</th>
+                  <th scope="col">@sortablelink('first_name', __('First Name'), ['filter' => 'active, visible'], ['class' => 'text-decoration-none text-uppercase text-muted'])</th>
+                  <th scope="col">@sortablelink('created_at', __('Created At'), ['filter' => 'active, visible'], ['class' => 'text-decoration-none text-uppercase text-muted'])</th>
+                  <th scope="col">@sortablelink('updated_at', __('Updated At'), ['filter' => 'active, visible'], ['class' => 'text-decoration-none text-uppercase text-muted'])</th>
                 </tr>
               </thead>
               <tbody>
                 @foreach ($users as $user)
                   <tr>
-                    <td>{{ $user->id }}</td>
-                    <th scope="row">{{ $user->personal_number }}</th>
-                    <td>{{ $user->title }}</td>
-                    <td>{{ $user->last_name }}</td>
-                    <td>{{ $user->first_name }}</td>
+                    <td width="2%">{{ $user->id }}</td>
+                    <th width="5%" scope="row">{{ $user->personal_number }}</th>
+                    <td width="5%">{{ $user->title }}</td>
+                    <td width="10%">{{ $user->last_name }}</td>
+                    <td width="10%">{{ $user->first_name }}</td>
+                    <td width="5%">{{ date('d. m. Y', strtotime($user->created_at)) }}</td>
+                    <td width="5%">{{ date('d. m. Y', strtotime($user->updated_at)) }}</td>
                   </tr>
                 @endforeach
               </tbody>
             </table>
-            {!! $users->links() !!}
+            {!! $users->appends(\Request::except('page'))->render() !!}
           </div>
         </div>
       </div>

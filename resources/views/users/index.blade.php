@@ -1,0 +1,44 @@
+@extends('layouts.app')
+
+@section('content')
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">{{ __('Users') }}</div>
+
+          <div class="card-body">
+            @if (session('status'))
+              <div class="alert alert-success" role="alert">
+                {{ session('status') }}
+              </div>
+            @endif
+            <!-- List group -->
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">{{ __('#') }}</th>
+                  <th scope="col">@sortablelink('personal_number', __('Personal Number'))</th>
+                  <th scope="col">@sortablelink('title', __('Title'))</th>
+                  <th scope="col">@sortablelink('last_name', __('Last Name'))</th>
+                  <th scope="col">@sortablelink('first_name', __('First Name'))</th>
+                </tr>
+              </thead>
+              <tbody>
+                @foreach ($users as $user)
+                  <tr>
+                    <td>{{ $user->id }}</td>
+                    <th scope="row">{{ $user->personal_number }}</th>
+                    <td>{{ $user->title }}</td>
+                    <td>{{ $user->last_name }}</td>
+                    <td>{{ $user->first_name }}</td>
+                  </tr>
+                @endforeach
+              </tbody>
+            </table>
+            {!! $users->links() !!}
+          </div>
+        </div>
+      </div>
+    </div>
+  @endsection

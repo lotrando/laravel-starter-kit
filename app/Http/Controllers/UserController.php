@@ -9,7 +9,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = User::sortable()->paginate(16);
+        $users = User::sortable('last_name')->paginate(16);
         return view('users.index', compact('users'));
     }
 }
